@@ -1,4 +1,6 @@
 import React, { useRef,useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { postApplication } from '../../features/admin/AdminSlice'
 
 const AddApplication = () => {
     const [salutaion, setSalutation] = useState('')
@@ -13,6 +15,25 @@ const AddApplication = () => {
     const [insuranceId, setInsuranceId] = useState('');
     const imageRef = useRef(null);
 
+    let dispatch =useDispatch();
+
+    const post = () => {
+        const data = {
+            salutaion,
+            name,
+            email,
+            address,
+            gender,
+            dob,
+            qualification,
+            nominee,
+            relation,
+            insuranceId,
+            // imageRef:image.current.files[0]
+        }
+        dispatch(postApplication());
+    }
+
     return (
         <div>
             <div>
@@ -25,6 +46,10 @@ const AddApplication = () => {
                 <input type="text" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
                 <input type="text" placeholder='address' value={address} onChange={(e) => setAddess(e.target.value)} />
                 <input type="text" placeholder='gender' value={gender} onChange={(e) => setGender(e.target.value)} />
+                <select name="gender" id="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
+                    <option value="Male">Male</option>
+                    <option value="Female" >Female</option>
+                </select>
                 <input type="date" placeholder='dob' value={dob} onChange={(e) => setDob(e.target.value)} />
                 <input type="text" placeholder='qualification' value={qualification} onChange={(e) => setQualification(e.target.value)} />
                 <input type="text" placeholder='nominee' value={nominee} onChange={(e) => setNominee(e.target.value)} />

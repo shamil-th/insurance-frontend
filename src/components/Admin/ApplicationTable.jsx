@@ -8,7 +8,7 @@ const ApplicationTable = () => {
     let dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllapplications());
-    })
+    },[])
     return (
         <>
          <table>
