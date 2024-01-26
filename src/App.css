@@ -1,0 +1,22 @@
+.App{
+    min-height: 100vh;
+}
+.container{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 0;
+}
+
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
