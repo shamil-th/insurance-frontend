@@ -29,7 +29,7 @@ const AddApplication = () => {
             nominee,
             relation,
             insuranceId,
-            // imageRef:image.current.files[0]
+    
         }
         dispatch(postApplication());
     }
