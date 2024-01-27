@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import AlertCss from './Alert.module.css'
 
-const Alert = () => {
+const Alert = ({setAlert ,setModal}) => {
+  const hideForm = () => {
+    setAlert(false);
+    setModal(false);
+  }
   return (
-    <div>
-        <h2>Employee Added Successfully</h2>
+    <div className={AlertCss.alert_box}>
+        <h2>Policy Added Successfully</h2>
+        <button onClick={()=>hideForm()}>Okay</button>
     </div>
   )
 }

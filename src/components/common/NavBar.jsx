@@ -22,7 +22,6 @@ const NavBar = () => {
     <button onClick={() => statusPage('Admin')}>Home</button>
     {modal && <div className='overlay'>
       <AddApplication setModal={setModal} />
-      <Alert/>
     </div>}</div>
   )
 }

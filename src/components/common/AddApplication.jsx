@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllapplications, getPolicies, postApplication } from '../../features/admin/AdminSlice';
 import AddCss from './AddApplication.module.css'
+import Alert from './Alert';
 
-const AddApplication = ({setModal}) => { 
+const AddApplication = ({ setModal }) => {
 
     const [salutation, setSalutation] = useState('')
     const [name, setName] = useState('')
@@ -18,6 +19,8 @@ const AddApplication = ({setModal}) => {
     const [insuranceId, setInsuranceId] = useState('');
     const [profession, setProfession] = useState('');
     const imageRef = useRef(null);
+
+    const [alert, setAlert] = useState(false);
 
     // const [viewPolicy, setViewPolicy] = useState(false)
 
@@ -66,7 +69,7 @@ const AddApplication = ({setModal}) => {
     }, [dispatch])
 
     const resetForm = () => {
-        
+
         setSalutation("");
         setName("");
         setEmail("");
@@ -81,7 +84,7 @@ const AddApplication = ({setModal}) => {
         setProfession("");
         imageRef.current.value = '';
 
-        setModal(false);
+        // setModal(false);
     }
 
     const post = () => {
@@ -105,6 +108,7 @@ const AddApplication = ({setModal}) => {
         let param = "";
         dispatch(getAllapplications(param))
         resetForm();
+        setAlert(true);
     }
 
     const getDetails = async (id) => {
@@ -117,8 +121,10 @@ const AddApplication = ({setModal}) => {
 
 
     return (
-        <div className={AddCss.app_form}>
-            <button onClick={()=>setModal(false)}>Close</button>
+        <>
+            {!alert ?
+                < div className={AddCss.app_form}>
+            <button onClick={() => setModal(false)}>Close</button>
             <div className={AddCss.input_fields}>
                 <input type="file" ref={imageRef} />
                 <select name="salutation" id="salutation" value={salutation} onChange={(e) => setSalutation(e.target.value)}>
@@ -135,7 +141,7 @@ const AddApplication = ({setModal}) => {
                     <option value="Female" >Female</option>
                 </select>
                 <input type="date" placeholder='dob' value={dob} onChange={(e) => dobCalc(e.target.value)} />
-                <input type="text" placeholder='age' value={age} disabled/>
+                <input type="text" placeholder='age' value={age} disabled />
                 <input type="text" placeholder='profession' value={profession} onChange={(e) => setProfession(e.target.value)} />
                 <div>Qualification
                     {qualifications.map((quali, index) => (
@@ -164,11 +170,12 @@ const AddApplication = ({setModal}) => {
                         </div>
                     ))}
                 </div>}
-
                 <button onClick={() => post()}>Submit</button>
-
             </div>
-        </div>
+        </div >:
+    <div><Alert setAlert={setAlert} setModal={setModal}/></div>
+}
+        </>
     )
 }
 
