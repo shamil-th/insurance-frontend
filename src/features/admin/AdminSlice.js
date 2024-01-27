@@ -3,9 +3,13 @@ import axios from "axios";
 
 
 // retrive all applications
-export const getAllapplications = createAsyncThunk('admin/getAllapplications', async () => {
+export const getAllapplications = createAsyncThunk('admin/getAllapplications', async (data) => {
+    // if(data.length===0){
+    //     data = "";
+    // }
+    const {status,searchValue} = data;
     try {
-        const response = await axios.get('http://localhost:4000/application');
+        const response = await axios.get(`http://localhost:4000/application?status=${status}&search=${searchValue}`);
         if (!response.data) {
             throw new Error('data not find')
         }
@@ -54,16 +58,29 @@ export const getPolicies = createAsyncThunk('admin/getPolicies', async () => {
     try {
         const response = await axios.get('http://localhost:4000/admin/policy');
         if (!response.data) {
-            console.log('no response')
-
             throw new Error("could not find data", Error)
         }
         return response.data;
     } catch (err) {
-        console.error( "could not find data")
+        console.error("could not find data")
     }
 });
 
+
+// update application status
+export const statusUpdate = createAsyncThunk('admin/statusUpdate', async (data) => {
+    const { id, value } = data;
+    const newUpdate = {status:value};
+    try {
+        const response = await axios.put(`http://localhost:4000/application/${id}`, newUpdate);
+        if (!response.data) {
+            throw new Error('could not update status');
+        }
+        return response.data;
+    } catch (err) {
+        console.error('could not update status')
+    }
+})
 
 const initialState = {
     applications: [],
@@ -86,7 +103,9 @@ const adminSlice = createSlice({
             .addCase(getPolicies.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.policies = action.payload;
-                console.log(state.status)
+            })
+            .addCase(statusUpdate.fulfilled, (state) => {
+                state.status = "succeeded"
             })
     }
 })

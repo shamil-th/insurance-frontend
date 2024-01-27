@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import ApplicationTable from './ApplicationTable';
 import AdminCss from './Admin.module.css';
-import AddApplication from '../common/AddApplication';
+import NavBar from '../common/NavBar';
+
 
 const Admin = () => {
-  const [modal, setModal] = useState(false)
-  console.log(modal)
+
+  const [searchValue, setSearchValue] = useState('');
 
   return (
-    <div className={AdminCss.admin_page}>
-    <div className='container'>
-      <button onClick={ ()=>setModal(true)}>Add Application</button>
-      {modal && <div className='overlay'>
-        <AddApplication setModal={setModal} />
-      </div>}
-      <ApplicationTable />
-    </div>
-    </div>
+    <>
+      <div><NavBar /></div>
+      <div className={AdminCss.admin_page}>
+        <div className='container'>
+          <input type="text" placeholder='search' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+          <ApplicationTable searchValue={searchValue} />
+        </div>
+      </div>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPolicies, postApplication } from '../../features/admin/AdminSlice';
+import { getAllapplications, getPolicies, postApplication } from '../../features/admin/AdminSlice';
 import AddCss from './AddApplication.module.css'
 
 const AddApplication = ({setModal}) => { 
@@ -63,9 +63,26 @@ const AddApplication = ({setModal}) => {
 
     useEffect(() => {
         dispatch(getPolicies());
-
     }, [dispatch])
 
+    const resetForm = () => {
+        
+        setSalutation("");
+        setName("");
+        setEmail("");
+        setAddess("");
+        setGender("");
+        setDob("");
+        setAge("");
+        setQualification("");
+        setNominee("");
+        setRelation("");
+        setInsuranceId("");
+        setProfession("");
+        imageRef.current.value = '';
+
+        setModal(false);
+    }
 
     const post = () => {
 
@@ -84,8 +101,10 @@ const AddApplication = ({setModal}) => {
             profession,
             avatar: imageRef.current.files[0]
         }
-        console.log(data)
         dispatch(postApplication(data));
+        let param = "";
+        dispatch(getAllapplications(param))
+        resetForm();
     }
 
     const getDetails = async (id) => {

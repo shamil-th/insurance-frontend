@@ -1,33 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllapplications } from '../../features/admin/AdminSlice';
-import Row from './Row';
+import Table from './Table';
 
-const ApplicationTable = () => {
+const ApplicationTable = ({searchValue}) => {
+
   const applications = useSelector((state) => state.admin.applications);
+
   let dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getAllapplications());
-  }, [])
+
+    const data = {status:"", searchValue:searchValue}
+    dispatch(getAllapplications(data));
+
+  }, [dispatch,searchValue])
+
   return (
-    <>
-      <table>
-        <thead >
-          <tr>
-            <th>name</th>
-            <th>Mail</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {applications.map((app) => (
-            <Row app={app} key={app._id} />
-          ))}</tbody>
-      </table>
-    </>
+      
+    <Table applications= {applications}/>
   )
 }
 

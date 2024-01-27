@@ -1,9 +1,91 @@
-.avatar{
+.avatar {
     width: 40px;
     height: 40px;
     border-radius: 10px;
     object-fit: cover;
 }
-table{
+
+table {
     width: 100%;
+}
+
+.more_buttonn {
+    position: relative;
+    cursor: pointer;
+}
+
+.more_buttonn span {
+    background-color: rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.more_buttonn span:hover {
+    background-color: rgb(230, 230, 230);
+    transition: all 100ms;
+}
+
+.status_opt {
+    position: absolute;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    width: 100px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    align-items: center;
+    padding: 5px;
+    z-index: 5;
+}
+
+p {
+    margin: 0;
+}
+
+.status_opt p {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.status_opt p:hover {
+    background-color: rgb(185, 185, 185);
+    cursor: pointer;
+
+}
+
+tr {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+tr th {
+    display: flex;
+    padding: 10px;
+    /* align-items: startfe; */
+}
+thead{
+    background-color: beige;
+}
+
+td {
+    padding: 10px;
+}
+
+.table_row {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #EDF1FA;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
