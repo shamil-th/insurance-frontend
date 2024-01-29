@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TableCss from './Table.module.css'
 import { useDispatch } from 'react-redux';
-import { getAllapplications, statusUpdate } from '../../features/admin/AdminSlice';
+import { getAllapplications, setAlert, statusUpdate } from '../../features/admin/AdminSlice';
 
 const Row = ({ app, UpdStatus }) => {
 
@@ -11,6 +11,10 @@ const Row = ({ app, UpdStatus }) => {
 
   let dispatch = useDispatch();
 
+  // const hideAlert = () => {
+  //   setTimeout(dispatch(setAlert(false)),3000);
+  // }
+
   const statusUpdation = async (value) => {
 
     setStatus('');
@@ -19,6 +23,10 @@ const Row = ({ app, UpdStatus }) => {
     setStatus(value);
 
     await dispatch(statusUpdate(data));
+    dispatch(setAlert(true));
+
+    // hideAlert();
+
     if (UpdStatus) {
       const update = { status: UpdStatus, searchValue: "" }
       dispatch(getAllapplications(update))

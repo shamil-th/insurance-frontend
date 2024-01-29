@@ -86,7 +86,8 @@ const initialState = {
     applications: [],
     policies: [],
     status: [],
-    searchValue: ['']
+    searchValue: [''],
+    alert: (false)
 }
 const adminSlice = createSlice({
     name: "admin",
@@ -94,6 +95,9 @@ const adminSlice = createSlice({
     reducers: {
         setSearchValue: (state,action) => {
             state.searchValue = action.payload;
+        },
+        setAlert: (state,action) => {
+            state.alert = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -116,5 +120,5 @@ const adminSlice = createSlice({
 })
 
 
-export const { setSearchValue } = adminSlice.actions;
+export const { setSearchValue,setAlert } = adminSlice.actions;
 export default adminSlice.reducer;

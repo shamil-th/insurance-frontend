@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AddApplication from './AddApplication';
 import NavCss from './Navbar.module.css';
 import { useDispatch } from 'react-redux';
 import { setSearchValue } from '../../features/admin/AdminSlice';
+import AlertContent from './AlertContent';
 
 const NavBar = () => {
   const [modal, setModal] = useState(false);
@@ -15,6 +16,9 @@ const NavBar = () => {
     dispatch(setSearchValue(e.target.value));
   }
 
+  let location = useLocation();
+console.log(location.pathname);
+let path = location.pathname;
 
   const statusPage = (route) => {
     dispatch(setSearchValue(''))
@@ -26,10 +30,10 @@ const NavBar = () => {
     <div className={NavCss.navbar}>
       <div className={NavCss.header}>
         <ul className={NavCss.navlist}>
-          <li onClick={() => statusPage('Admin')}>Home</li>
-          <li onClick={() => statusPage('Pending')}>Pending</li>
-          <li onClick={() => statusPage('Approved')}>Approved</li>
-          <li onClick={() => statusPage('Cancelled')}>Cancelled</li>
+          <li className={path ==='/Admin' ? NavCss.active : ""} onClick={() => statusPage('Admin')}>Home</li>
+          <li className={path ==='/Pending' ? NavCss.active : ""} onClick={() => statusPage('Pending')}>Pending</li>
+          <li className={path ==='/Approved' ? NavCss.active : ""} onClick={() => statusPage('Approved')}>Approved</li>
+          <li className={path ==='/Cancelled' ? NavCss.active : ""}onClick={() => statusPage('Cancelled')}>Cancelled</li>
         </ul>
         <div className={NavCss.search}>
           <div className={NavCss.search_box}>
@@ -41,7 +45,9 @@ const NavBar = () => {
       </div>
       {modal && <div className='overlay'>
         <AddApplication setModal={setModal} />
-      </div>}</div>
+      </div>}
+      <AlertContent/>
+    </div>
   )
 }
 
