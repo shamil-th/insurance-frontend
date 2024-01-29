@@ -9,7 +9,7 @@ const Table = ({applications, UpdStatus}) => {
     <table>
         <thead className={TableCss.header}>
           <tr>
-            <th>name</th>
+            <th>Name</th>
             <th>Mail</th>
             <th>Age</th>
             <th>Gender</th>

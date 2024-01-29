@@ -42,8 +42,8 @@ const Row = ({ app, UpdStatus }) => {
       </span>
         {moreBtn && <div className={TableCss.status_opt}>
           <p onClick={() => statusUpdation('Pending')}>Pending</p>
-          <p onClick={() => statusUpdation('Approved')}>Approved</p>
-          <p onClick={() => statusUpdation('Cancelled')}>Cancelled</p>
+          <p onClick={() => statusUpdation('Approved')}>Approve</p>
+          <p onClick={() => statusUpdation('Cancelled')}>Cancel</p>
         </div>}
       </td>
     </tr>

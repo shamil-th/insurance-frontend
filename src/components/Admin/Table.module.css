@@ -64,6 +64,9 @@ tr {
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr 50px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 3px;
 }
 
 tr th {
@@ -71,9 +74,12 @@ tr th {
     padding: 10px;
     /* align-items: startfe; */
 }
+
 thead{
-    background-color: beige;
+    background-color: #ededed;
+    padding: 10px;
 }
+
 
 td {
     padding: 10px;
@@ -89,3 +95,4 @@ td {
     align-items: center;
     gap: 10px;
 }
+

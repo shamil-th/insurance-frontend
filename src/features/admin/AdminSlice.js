@@ -25,7 +25,7 @@ export const postApplication = createAsyncThunk('admin/postApplication', async (
 
     const formData = new FormData()
 
-    formData.append("salutation", data.salutaion)
+    formData.append("salutation", data.salutation)
     formData.append("name", data.name)
     formData.append("email", data.email)
     formData.append("address", data.address)
@@ -85,12 +85,17 @@ export const statusUpdate = createAsyncThunk('admin/statusUpdate', async (data) 
 const initialState = {
     applications: [],
     policies: [],
-    status: []
+    status: [],
+    searchValue: ['']
 }
 const adminSlice = createSlice({
     name: "admin",
     initialState,
-    reducers: {},
+    reducers: {
+        setSearchValue: (state,action) => {
+            state.searchValue = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getAllapplications.fulfilled, (state, action) => {
@@ -110,4 +115,6 @@ const adminSlice = createSlice({
     }
 })
 
+
+export const { setSearchValue } = adminSlice.actions;
 export default adminSlice.reducer;

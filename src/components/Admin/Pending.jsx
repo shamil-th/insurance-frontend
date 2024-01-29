@@ -8,6 +8,8 @@ import NavBar from '../common/NavBar';
 const Pending = () => {
 
     const applications = useSelector((state) => state.admin.applications);
+    const searchValue = useSelector((state) => state.admin.searchValue);
+
 
     let dispatch = useDispatch();
     let location = useLocation();
@@ -15,9 +17,9 @@ const Pending = () => {
     const status = location.state.currentStatus ;
 
     useEffect(() => {
-        const data = {status:status,searchValue:""}
+        const data = {status:status,searchValue:searchValue}
         dispatch(getAllapplications(data));
-    }, [dispatch])
+    }, [dispatch,searchValue])
 
     return (
         <>

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllapplications } from '../../features/admin/AdminSlice';
 import Table from './Table';
 
-const ApplicationTable = ({searchValue}) => {
+const ApplicationTable = () => {
 
   const applications = useSelector((state) => state.admin.applications);
+  const searchValue = useSelector((state) => state.admin.searchValue);
 
   let dispatch = useDispatch();
 

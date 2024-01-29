@@ -11,7 +11,7 @@ const CustomerNavbar = () => {
                 <div className='container'>
                     <div className={NavCss.header}>
                         <div><p>Status</p></div>
-                        <button onClick={() => setModal(true)}>Incurance</button>
+                        <button onClick={() => setModal(true)}>Insurance</button>
                     </div>
                 </div>
             </div>
